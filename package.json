@@ -1,0 +1,16 @@
+{
+  "name": "simple-ems",
+  "version": "1.0.0",
+  "description": "A simple (in-memory) Employee Management System built using `HTML`, `CSS`, and `TypeScript`.",
+  "main": "script.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "keywords": [],
+  "author": "Megha V",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "typescript": "^5.7.3"
+  }
+}

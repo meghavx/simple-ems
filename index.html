@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/x-icon" href="src/assets/favicon.png"/>
+    <title>Employee Management System</title>
+    <meta name="author" content="Megha Verma"/>
+    <link rel="stylesheet" href="./src/styles.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div id="ems_header">
+        <h1>Employee Management System</h1>
+      </div>
+      
+      <nav id="ems_nav">
+        <button id="view-employees">View Employees</button>
+        <button id="add-employee">Add Employee</button>
+        <button id="delete-employees">Delete All</button>
+      </nav>
+
+      <section id="ems_view-employees">
+        <table id="employee-table">
+          <thead id="employee-table-header">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="employee-table-body"></tbody>
+        </table>
+      </section>
+
+      <section id="ems_employee-form" class="hidden">
+        <div class="employee-form-container">
+          <h1 id="form-title">Add Employee</h1>
+          <div class="form-field">
+            <label for="employee-id">Employee ID</label>
+            <input type="text" id="employee-id" required>
+          </div>
+          <div class="form-field">
+            <label for="employee-name">Name</label>
+            <input type="text" id="employee-name" required>
+          </div>
+          <div class="form-field">
+            <label for="employee-email">E-mail</label>
+            <input type="email" id="employee-email" required>
+          </div>
+          <div class="form-field">
+            <label for="employee-gender">Gender</label>
+            <select id="employee-gender">
+              <option value="">Choose Gender</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="employee-position">Position</label>
+            <select id="employee-position">
+              <option value="">All Positions</option>
+              <option value="Associate">Associate</option>
+              <option value="Analyst">Analyst</option>
+              <option value="Engineer">Engineer</option>
+              <option value="Manager">Manager</option>
+            </select>
+          </div>
+          <div class="action-buttons">
+            <button id="save-employee">Save</button>
+          </div>
+        </div>  
+      </section>
+
+      <section id="ems_employee-details" class="hidden">
+        <p><strong>ID:</strong> <span id="detail-id"></span></p>
+        <p><strong>Name:</strong> <span id="detail-name"></span></p>
+        <p><strong>E-mail:</strong> <span id="detail-email"></span></p>
+        <p><strong>Gender:</strong> <span id="detail-gender"></span></p>
+        <p><strong>Position:</strong> <span id="detail-position"></span></p>
+        <div class="action-buttons">
+          <button id="edit-employee">Edit</button>
+          <button id="delete-employee">Delete</button>
+        </div>
+      </section>
+    </div>
+    <script src="./dist/index.js"></script>
+  </body>
+</html>

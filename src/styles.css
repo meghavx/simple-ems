@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 1.25em;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 60%;
+  max-height: 100vh;
+  margin: auto;
+}
+
+
+/* Common styling */
+.hidden {
+  display: none;
+}
+
+button {
+  width: 6em;
+  padding: 8px 12px;    
+  color: white;
+  border: none;
+  border-radius: 0.375em;
+  cursor: pointer;
+  background-color: darkblue;
+}
+
+button:hover {
+  background-color: blue;
+}
+
+
+/* EMS Header */
+#ems_header {
+  h1 {
+    font-size: 3.25em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+    font-variant: small-caps;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+
+    @media (max-width: 768px) {
+      font-size: 2.25em;
+    }
+  } 
+}
+
+
+/* EMS Nav Bar */
+#ems_nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1%;
+
+  button {
+    width: 10em;
+  }
+}
+
+
+/* EMS SEARCH & FILTER BAR */
+#ems_search-and-filter {
+  #filter {flex: 1;}
+
+  #search {flex: 4;}
+
+  #search-btn {flex: 0.75;}
+
+  .form-field {
+    margin-bottom: 10px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+}
+
+
+/* EMS VIEW EMPLOYEES */
+#ems_view-employees {
+  margin-top: 2em;
+  div {
+    display: flex;
+    margin: 2em 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+}
+
+
+/* EMS ADD NEW EMPLOYEE */
+#ems_employee-form {
+  .employee-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: 0.1em solid lightgray;
+    border-radius: 1em;
+    max-width: 44em;
+    max-height: 100vh; 
+    margin: 2.5em auto;
+    padding: 2em;
+  }
+
+  .action-buttons {
+    margin-top: 2%;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+}
+
+
+/* EMS EMPLOYEE DETAILS */
+#ems_employee-details {
+  border: 0.1em solid lightgray;
+  border-radius: 1em;
+  max-width: 30em;
+  margin: 5em auto;
+  padding: 2em;
+  font-size: 1.25em;
+
+  .action-buttons {
+    margin-top: 2%;
+  }
+}
