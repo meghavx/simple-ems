@@ -32,6 +32,7 @@ const detailGender = document.getElementById('detail-gender') as HTMLElement;
 const detailPosition = document.getElementById('detail-position') as HTMLElement;
 const editEmployeeButton = document.getElementById('edit-employee') as HTMLButtonElement;
 const deleteEmployeeButton = document.getElementById('delete-employee') as HTMLButtonElement;
+const closeEmployeeButton = document.getElementById('close-employee') as HTMLButtonElement;
 
 function showSection(section: HTMLElement) {
   employeeListSection.classList.add('hidden');
@@ -62,7 +63,7 @@ function renderEmployeeTable() {
         <td>${emp.name}</td>
         <td>${emp.position}</td>
         <td>
-          <button onclick="viewDetails('${emp.id}')">View</button>
+          <img onclick="viewDetails('${emp.id}')" class="icon" src="https://cdn-icons-png.freepik.com/256/3878/3878961.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
         </td>
       `;
       employeeTableBody.appendChild(row);
@@ -154,6 +155,10 @@ deleteEmployeeButton.addEventListener('click', () => {
   employees = employees.filter(emp => emp.id !== currentEmployeeId);
   saveEmployees();
   renderEmployeeTable();
+  showSection(employeeListSection);
+});
+
+closeEmployeeButton.addEventListener('click', () => {
   showSection(employeeListSection);
 });
 

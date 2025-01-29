@@ -16,7 +16,7 @@ body {
 }
 
 
-/* Common styling */
+/* Common Styling */
 .hidden {
   display: none;
 }
@@ -66,29 +66,19 @@ button:hover {
 }
 
 
-/* EMS SEARCH & FILTER BAR */
-#ems_search-and-filter {
-  #filter {flex: 1;}
-
-  #search {flex: 4;}
-
-  #search-btn {flex: 0.75;}
-
-  .form-field {
-    margin-bottom: 10px;
-  }
-
-  input, select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-}
-
-
 /* EMS VIEW EMPLOYEES */
 #ems_view-employees {
   margin-top: 2em;
+
+  .icon {
+    max-height: 1.5em;
+
+    &:hover {
+      transform: scale(1.15);
+      transition: 0.3s ease-in-out;
+    }
+  }
+
   div {
     display: flex;
     margin: 2em 0;
@@ -154,6 +144,15 @@ button:hover {
   margin: 5em auto;
   padding: 2em;
   font-size: 1.25em;
+
+  .icon {
+    max-height: 1em;
+
+    &:hover {
+      transform: scale(1.15);
+      transition: 0.3s ease-in-out;
+    }
+  }
 
   .action-buttons {
     margin-top: 2%;
