@@ -13,9 +13,9 @@ const viewListButton = document.getElementById('view-employees') as HTMLButtonEl
 const addEmployeeButton = document.getElementById('add-employee') as HTMLButtonElement;
 const deleteAllButton = document.getElementById('delete-employees') as HTMLButtonElement;
 const employeeListSection = document.getElementById('ems_view-employees') as HTMLElement;
+const employeeTableBody = document.getElementById('employee-table-body') as HTMLTableSectionElement;
 const employeeFormSection = document.getElementById('ems_employee-form') as HTMLElement;
 const employeeDetailsSection = document.getElementById('ems_employee-details') as HTMLElement;
-const employeeTableBody = document.getElementById('employee-table-body') as HTMLTableSectionElement;
 
 const formTitle = document.getElementById('form-title') as HTMLElement;
 const employeeIdInput = document.getElementById('employee-id') as HTMLInputElement;

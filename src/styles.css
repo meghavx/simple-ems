@@ -15,24 +15,8 @@ body {
   margin: auto;
 }
 
-
-/* Common Styling */
 .hidden {
   display: none;
-}
-
-button {
-  width: 6em;
-  padding: 8px 12px;    
-  color: white;
-  border: none;
-  border-radius: 0.375em;
-  cursor: pointer;
-  background-color: darkblue;
-}
-
-button:hover {
-  background-color: blue;
 }
 
 
@@ -62,11 +46,21 @@ button:hover {
 
   button {
     width: 10em;
+    padding: 8px 12px;    
+    color: white;
+    border: none;
+    border-radius: 0.375em;
+    cursor: pointer;
+    background-color: darkblue;
+  }
+  
+  button:hover {
+    background-color: blue;
   }
 }
 
 
-/* EMS VIEW EMPLOYEES */
+/* EMS View List */
 #ems_view-employees {
   margin-top: 2em;
 
@@ -116,7 +110,7 @@ button:hover {
 }
 
 
-/* EMS ADD NEW EMPLOYEE */
+/* EMS Add Employee Form */
 #ems_employee-form {
   .employee-form-container {
     display: flex;
@@ -145,10 +139,24 @@ button:hover {
     padding: 8px;
     box-sizing: border-box;
   }
+
+  button {
+    width: 8em;
+    padding: 8px 12px;    
+    color: white;
+    border: none;
+    border-radius: 0.375em;
+    cursor: pointer;
+    background-color: darkblue;
+  }
+  
+  button:hover {
+    background-color: blue;
+  }
 }
 
 
-/* EMS EMPLOYEE DETAILS */
+/* EMS View Employee Details */
 #ems_employee-details {
   border: 0.1em solid lightgray;
   border-radius: 1em;
