@@ -70,15 +70,6 @@ button:hover {
 #ems_view-employees {
   margin-top: 2em;
 
-  .icon {
-    max-height: 1.5em;
-
-    &:hover {
-      transform: scale(1.15);
-      transition: 0.3s ease-in-out;
-    }
-  }
-
   div {
     display: flex;
     margin: 2em 0;
@@ -100,6 +91,27 @@ button:hover {
 
   th {
     background-color: #f4f4f4;
+  }
+
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: 0.5em 0.25em;
+  }
+
+  .icon {
+    max-height: 1.5em;
+
+    &:hover {
+      transform: scale(1.2);
+      transition: 0.3s ease-in-out;
+    }
+  }
+
+  .edit-icon,
+  .delete-icon {
+    max-height: 1.15em;
   }
 }
 
@@ -149,12 +161,13 @@ button:hover {
     max-height: 1em;
 
     &:hover {
-      transform: scale(1.15);
+      transform: scale(1.5);
       transition: 0.3s ease-in-out;
     }
   }
 
-  .action-buttons {
-    margin-top: 2%;
+  .close-icon {
+    float: right;
+    max-height: 0.75em;
   }
 }

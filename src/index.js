@@ -20,8 +20,6 @@ const detailName = document.getElementById('detail-name');
 const detailEmail = document.getElementById('detail-email');
 const detailGender = document.getElementById('detail-gender');
 const detailPosition = document.getElementById('detail-position');
-const editEmployeeButton = document.getElementById('edit-employee');
-const deleteEmployeeButton = document.getElementById('delete-employee');
 const closeEmployeeButton = document.getElementById('close-employee');
 function showSection(section) {
     employeeListSection.classList.add('hidden');
@@ -48,7 +46,11 @@ function renderEmployeeTable() {
         <td>${emp.name}</td>
         <td>${emp.position}</td>
         <td>
-          <img onclick="viewDetails('${emp.id}')" class="icon" src="https://cdn-icons-png.freepik.com/256/3878/3878961.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+          <div class="action-buttons">
+            <img onclick="viewDetails('${emp.id}')" class="icon view-icon" src="https://cdn-icons-png.freepik.com/256/9207/9207686.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+            <img onclick="editDetails('${emp.id}')" class="icon edit-icon" src="https://cdn-icons-png.freepik.com/256/14915/14915786.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+            <img onclick="deleteDetails('${emp.id}')" class="icon delete-icon" src="https://cdn-icons-png.freepik.com/256/756/756906.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+          </div>
         </td>
       `;
         employeeTableBody.appendChild(row);
@@ -65,6 +67,26 @@ function viewDetails(id) {
     detailGender.textContent = employee.gender;
     detailPosition.textContent = employee.position;
     showSection(employeeDetailsSection);
+}
+function editDetails(id) {
+    const employee = employees.find(emp => emp.id === id);
+    if (!employee)
+        return;
+    currentEmployeeId = id;
+    formTitle.textContent = 'Edit Employee';
+    employeeIdInput.value = employee.id;
+    employeeNameInput.value = employee.name;
+    employeeEmailInput.value = employee.email;
+    employeeGenderInput.value = employee.gender;
+    employeePositionInput.value = employee.position;
+    showSection(employeeFormSection);
+}
+function deleteDetails(id) {
+    employees = employees.filter(emp => emp.id !== id);
+    currentEmployeeId = id;
+    saveEmployees();
+    renderEmployeeTable();
+    showSection(employeeListSection);
 }
 function resetForm() {
     employeeIdInput.value = '';
@@ -109,24 +131,6 @@ saveEmployeeButton.addEventListener('click', () => {
     else {
         employees.push({ id, name, email, gender, position });
     }
-    saveEmployees();
-    renderEmployeeTable();
-    showSection(employeeListSection);
-});
-editEmployeeButton.addEventListener('click', () => {
-    const employee = employees.find(emp => emp.id === currentEmployeeId);
-    if (!employee)
-        return;
-    formTitle.textContent = 'Edit Employee';
-    employeeIdInput.value = employee.id;
-    employeeNameInput.value = employee.name;
-    employeeEmailInput.value = employee.email;
-    employeeGenderInput.value = employee.gender;
-    employeePositionInput.value = employee.position;
-    showSection(employeeFormSection);
-});
-deleteEmployeeButton.addEventListener('click', () => {
-    employees = employees.filter(emp => emp.id !== currentEmployeeId);
     saveEmployees();
     renderEmployeeTable();
     showSection(employeeListSection);
