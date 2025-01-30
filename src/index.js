@@ -5,9 +5,15 @@ const viewListButton = document.getElementById('view-employees');
 const addEmployeeButton = document.getElementById('add-employee');
 const deleteAllButton = document.getElementById('delete-employees');
 const employeeListSection = document.getElementById('ems_view-employees');
-const employeeFormSection = document.getElementById('ems_employee-form');
-const employeeDetailsSection = document.getElementById('ems_employee-details');
 const employeeTableBody = document.getElementById('employee-table-body');
+const employeeDetailsSection = document.getElementById('ems_employee-details');
+const detailId = document.getElementById('detail-id');
+const detailName = document.getElementById('detail-name');
+const detailEmail = document.getElementById('detail-email');
+const detailGender = document.getElementById('detail-gender');
+const detailPosition = document.getElementById('detail-position');
+const closeEmployeeButton = document.getElementById('close-employee');
+const employeeFormSection = document.getElementById('ems_employee-form');
 const formTitle = document.getElementById('form-title');
 const employeeIdInput = document.getElementById('employee-id');
 const employeeNameInput = document.getElementById('employee-name');
@@ -15,31 +21,25 @@ const employeeEmailInput = document.getElementById('employee-email');
 const employeeGenderInput = document.getElementById('employee-gender');
 const employeePositionInput = document.getElementById('employee-position');
 const saveEmployeeButton = document.getElementById('save-employee');
-const detailId = document.getElementById('detail-id');
-const detailName = document.getElementById('detail-name');
-const detailEmail = document.getElementById('detail-email');
-const detailGender = document.getElementById('detail-gender');
-const detailPosition = document.getElementById('detail-position');
-const closeEmployeeButton = document.getElementById('close-employee');
-function showSection(section) {
-    employeeListSection.classList.add('hidden');
-    employeeFormSection.classList.add('hidden');
-    employeeDetailsSection.classList.add('hidden');
-    section.classList.remove('hidden');
+// Save employees to localStorage
+function saveEmployees() {
+    localStorage.setItem('employees', JSON.stringify(employees));
 }
 // Load employees from localStorage
 function loadEmployees() {
     const storedEmployees = localStorage.getItem('employees');
     employees = storedEmployees ? JSON.parse(storedEmployees) : [];
 }
-// Save employees to localStorage
-function saveEmployees() {
-    localStorage.setItem('employees', JSON.stringify(employees));
+function showSection(section) {
+    employeeListSection.classList.add('hidden');
+    employeeFormSection.classList.add('hidden');
+    employeeDetailsSection.classList.add('hidden');
+    section.classList.remove('hidden');
 }
+viewListButton.addEventListener('click', () => showSection(employeeListSection));
 function renderEmployeeTable() {
     employeeTableBody.innerHTML = '';
-    employees
-        .forEach(emp => {
+    employees.forEach(emp => {
         const row = document.createElement('tr');
         row.innerHTML = `
         <td>${emp.id}</td>
@@ -84,6 +84,9 @@ function editDetails(id) {
 function deleteDetails(id) {
     employees = employees.filter(emp => emp.id !== id);
     currentEmployeeId = id;
+    saveAndRefreshList();
+}
+function saveAndRefreshList() {
     saveEmployees();
     renderEmployeeTable();
     showSection(employeeListSection);
@@ -95,18 +98,11 @@ function resetForm() {
     employeeGenderInput.value = '';
     employeePositionInput.value = '';
 }
-viewListButton.addEventListener('click', () => showSection(employeeListSection));
 addEmployeeButton.addEventListener('click', () => {
     currentEmployeeId = null;
     formTitle.textContent = 'Add Employee';
     resetForm();
     showSection(employeeFormSection);
-});
-deleteAllButton.addEventListener('click', () => {
-    employees = [];
-    localStorage.removeItem('employees');
-    employeeTableBody.innerHTML = '';
-    showSection(employeeListSection);
 });
 saveEmployeeButton.addEventListener('click', () => {
     const id = employeeIdInput.value.trim();
@@ -131,11 +127,15 @@ saveEmployeeButton.addEventListener('click', () => {
     else {
         employees.push({ id, name, email, gender, position });
     }
-    saveEmployees();
-    renderEmployeeTable();
-    showSection(employeeListSection);
+    saveAndRefreshList();
 });
 closeEmployeeButton.addEventListener('click', () => {
+    showSection(employeeListSection);
+});
+deleteAllButton.addEventListener('click', () => {
+    employees = [];
+    localStorage.removeItem('employees');
+    employeeTableBody.innerHTML = '';
     showSection(employeeListSection);
 });
 loadEmployees();
