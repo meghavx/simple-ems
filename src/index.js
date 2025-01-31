@@ -34,12 +34,9 @@ function loadEmployees() {
     employees = storedEmployees ? JSON.parse(storedEmployees) : [];
 }
 function showSection(section) {
-    if (section === employeeFormSection || section === employeeDetailsSection) {
-        employeeSearchSection.classList.add('hidden');
-    }
-    if (section === employeeListSection) {
-        employeeSearchSection.classList.remove('hidden');
-    }
+    section === employeeListSection
+        ? employeeSearchSection.classList.remove('hidden')
+        : employeeSearchSection.classList.add('hidden');
     employeeListSection.classList.add('hidden');
     employeeFormSection.classList.add('hidden');
     employeeDetailsSection.classList.add('hidden');

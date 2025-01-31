@@ -55,6 +55,10 @@ body {
     display: flex;
     gap: 0.5em;
 
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+
     button {
       width: 10em;
       padding: 8px 12px;    
@@ -79,10 +83,11 @@ body {
   }
 
   #ems_search {
-    flex: 3;
+    flex: 4;
 
     .ems_search-container {
       display: flex;
+      justify-content: center;
       gap: 0.5em;
 
       input {
