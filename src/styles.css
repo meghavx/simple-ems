@@ -41,10 +41,17 @@ body {
 /* EMS Nav & Search Bar */
 #ems_nav-and-search {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1.25em;
   align-items: center;
   justify-content: space-between;
 
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
   nav {
+    flex: 2;
     display: flex;
     gap: 0.5em;
 
@@ -72,13 +79,14 @@ body {
   }
 
   #ems_search {
+    flex: 3;
+
     .ems_search-container {
       display: flex;
       gap: 0.5em;
-      max-width: 80%;
 
       input {
-        width: 28em;
+        width: 60%;
         border-radius: 1em;
         font-size: 1em;
         padding: 0.25em 0.75em;
@@ -139,6 +147,10 @@ body {
   .icon {
     max-height: 1.5em;
 
+    @media (max-width: 768px) {
+      max-height: 1.25em;
+    }
+
     &:hover {
       transform: scale(1.2);
       transition: 0.3s ease-in-out;
@@ -148,6 +160,10 @@ body {
   .edit-icon,
   .delete-icon {
     max-height: 1.15em;
+
+    @media (max-width: 768px) {
+      max-height: 1em;
+    }
   }
 }
 
@@ -210,9 +226,17 @@ body {
   .icon {
     max-height: 1em;
 
+    @media (max-width: 768px) {
+      max-height: 1em;
+    }
+
     &:hover {
       transform: scale(1.5);
       transition: 0.3s ease-in-out;
+
+      @media (max-width: 768px) {
+        transform: scale(1.25);
+      }
     }
   }
 
