@@ -15,7 +15,7 @@ const deleteAllButton = document.getElementById('delete-employees') as HTMLButto
 
 const employeeSearchSection = document.getElementById('ems_search') as HTMLElement;
 const searchInput = document.getElementById('search-input') as HTMLInputElement;
-const searchButton = document.getElementById('search-button') as HTMLButtonElement;
+const searchEmployeeButton = document.getElementById('search-button') as HTMLButtonElement;
 
 const employeeListSection = document.getElementById('ems_view-employees') as HTMLElement;
 const employeeTableBody = document.getElementById('employee-table-body') as HTMLTableSectionElement;
@@ -59,8 +59,6 @@ function showSection(section: HTMLElement) {
   section.classList.remove('hidden');
 }
 
-viewListButton.addEventListener('click', () => showSection(employeeListSection));
-
 function renderEmployeeTable() {
   employeeTableBody.innerHTML = '';
 
@@ -84,6 +82,7 @@ function renderEmployeeTable() {
   );
 }
 
+// Display employee details
 function viewDetails(id: string) {
   const employee = employees.find(emp => emp.id === id);
   if (!employee) return;
@@ -97,6 +96,8 @@ function viewDetails(id: string) {
   showSection(employeeDetailsSection);
 }
 
+
+// Edit employee details
 function editDetails(id: string) {
   const employee = employees.find(emp => emp.id === id);
   if (!employee) return;
@@ -111,12 +112,14 @@ function editDetails(id: string) {
   showSection(employeeFormSection);
 }
 
+// Delete employee details
 function deleteDetails(id: string) {
   employees = employees.filter(emp => emp.id !== id);
   currentEmployeeId = id;
   saveAndRefreshList();
 }
 
+// Save change in employees list and display the updated one
 function saveAndRefreshList() {
   saveEmployees();
   renderEmployeeTable();
@@ -131,11 +134,20 @@ function resetForm() {
   employeePositionInput.value = '';
 }
 
+viewListButton.addEventListener('click', () => showSection(employeeListSection));
+
 addEmployeeButton.addEventListener('click', () => {
   currentEmployeeId = null;
   formTitle.textContent = 'Add Employee';
   resetForm();
   showSection(employeeFormSection);
+});
+
+deleteAllButton.addEventListener('click', () => {
+  employees = [];
+  localStorage.removeItem('employees');
+  employeeTableBody.innerHTML = '';
+  showSection(employeeListSection);
 });
 
 saveEmployeeButton.addEventListener('click', () => {
@@ -166,15 +178,40 @@ saveEmployeeButton.addEventListener('click', () => {
   saveAndRefreshList();
 });
 
-closeEmployeeButton.addEventListener('click', () => {
-  showSection(employeeListSection);
-});
+closeEmployeeButton.addEventListener('click', () => showSection(employeeListSection));
 
-deleteAllButton.addEventListener('click', () => {
-  employees = [];
-  localStorage.removeItem('employees');
+function searchEmployee() {
   employeeTableBody.innerHTML = '';
-  showSection(employeeListSection);
+  const searchText = searchInput.value.toLowerCase();
+
+  employees
+    .filter(emp =>
+      (emp.name.toLowerCase().includes(searchText) ||
+        emp.id.includes(searchText) ||
+        emp.position.toLowerCase().includes(searchText))
+    )
+    .forEach(emp => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+      <td>${emp.id}</td>
+      <td>${emp.name}</td>
+      <td>${emp.position}</td>
+      <td>
+        <div class="action-buttons">
+          <img onclick="viewDetails('${emp.id}')" class="icon view-icon" src="https://cdn-icons-png.freepik.com/256/9207/9207686.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+          <img onclick="editDetails('${emp.id}')" class="icon edit-icon" src="https://cdn-icons-png.freepik.com/256/14915/14915786.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+          <img onclick="deleteDetails('${emp.id}')" class="icon delete-icon" src="https://cdn-icons-png.freepik.com/256/756/756906.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+        </div>
+      </td>
+    `;
+    employeeTableBody.appendChild(row);
+    });
+}
+
+searchEmployeeButton.addEventListener('click', () => searchEmployee());
+
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") searchEmployee();
 });
 
 loadEmployees();

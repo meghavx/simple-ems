@@ -6,7 +6,7 @@ const addEmployeeButton = document.getElementById('add-employee');
 const deleteAllButton = document.getElementById('delete-employees');
 const employeeSearchSection = document.getElementById('ems_search');
 const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
+const searchEmployeeButton = document.getElementById('search-button');
 const employeeListSection = document.getElementById('ems_view-employees');
 const employeeTableBody = document.getElementById('employee-table-body');
 const employeeDetailsSection = document.getElementById('ems_employee-details');
@@ -42,7 +42,6 @@ function showSection(section) {
     employeeDetailsSection.classList.add('hidden');
     section.classList.remove('hidden');
 }
-viewListButton.addEventListener('click', () => showSection(employeeListSection));
 function renderEmployeeTable() {
     employeeTableBody.innerHTML = '';
     employees.forEach(emp => {
@@ -62,6 +61,7 @@ function renderEmployeeTable() {
         employeeTableBody.appendChild(row);
     });
 }
+// Display employee details
 function viewDetails(id) {
     const employee = employees.find(emp => emp.id === id);
     if (!employee)
@@ -74,6 +74,7 @@ function viewDetails(id) {
     detailPosition.textContent = employee.position;
     showSection(employeeDetailsSection);
 }
+// Edit employee details
 function editDetails(id) {
     const employee = employees.find(emp => emp.id === id);
     if (!employee)
@@ -87,11 +88,13 @@ function editDetails(id) {
     employeePositionInput.value = employee.position;
     showSection(employeeFormSection);
 }
+// Delete employee details
 function deleteDetails(id) {
     employees = employees.filter(emp => emp.id !== id);
     currentEmployeeId = id;
     saveAndRefreshList();
 }
+// Save change in employees list and display the updated one
 function saveAndRefreshList() {
     saveEmployees();
     renderEmployeeTable();
@@ -104,11 +107,18 @@ function resetForm() {
     employeeGenderInput.value = '';
     employeePositionInput.value = '';
 }
+viewListButton.addEventListener('click', () => showSection(employeeListSection));
 addEmployeeButton.addEventListener('click', () => {
     currentEmployeeId = null;
     formTitle.textContent = 'Add Employee';
     resetForm();
     showSection(employeeFormSection);
+});
+deleteAllButton.addEventListener('click', () => {
+    employees = [];
+    localStorage.removeItem('employees');
+    employeeTableBody.innerHTML = '';
+    showSection(employeeListSection);
 });
 saveEmployeeButton.addEventListener('click', () => {
     const id = employeeIdInput.value.trim();
@@ -135,14 +145,35 @@ saveEmployeeButton.addEventListener('click', () => {
     }
     saveAndRefreshList();
 });
-closeEmployeeButton.addEventListener('click', () => {
-    showSection(employeeListSection);
-});
-deleteAllButton.addEventListener('click', () => {
-    employees = [];
-    localStorage.removeItem('employees');
+closeEmployeeButton.addEventListener('click', () => showSection(employeeListSection));
+function searchEmployee() {
     employeeTableBody.innerHTML = '';
-    showSection(employeeListSection);
+    const searchText = searchInput.value.toLowerCase();
+    employees
+        .filter(emp => (emp.name.toLowerCase().includes(searchText) ||
+        emp.id.includes(searchText) ||
+        emp.position.toLowerCase().includes(searchText)))
+        .forEach(emp => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+      <td>${emp.id}</td>
+      <td>${emp.name}</td>
+      <td>${emp.position}</td>
+      <td>
+        <div class="action-buttons">
+          <img onclick="viewDetails('${emp.id}')" class="icon view-icon" src="https://cdn-icons-png.freepik.com/256/9207/9207686.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+          <img onclick="editDetails('${emp.id}')" class="icon edit-icon" src="https://cdn-icons-png.freepik.com/256/14915/14915786.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+          <img onclick="deleteDetails('${emp.id}')" class="icon delete-icon" src="https://cdn-icons-png.freepik.com/256/756/756906.png?uid=R182226373&ga=GA1.1.1313046537.1736231732&semt=ais_hybrid"/>
+        </div>
+      </td>
+    `;
+        employeeTableBody.appendChild(row);
+    });
+}
+searchEmployeeButton.addEventListener('click', () => searchEmployee());
+searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter")
+        searchEmployee();
 });
 loadEmployees();
 renderEmployeeTable();
