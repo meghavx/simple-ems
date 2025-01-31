@@ -13,6 +13,10 @@ const viewListButton = document.getElementById('view-employees') as HTMLButtonEl
 const addEmployeeButton = document.getElementById('add-employee') as HTMLButtonElement;
 const deleteAllButton = document.getElementById('delete-employees') as HTMLButtonElement;
 
+const employeeSearchSection = document.getElementById('ems_search') as HTMLElement;
+const searchInput = document.getElementById('search-input') as HTMLInputElement;
+const searchButton = document.getElementById('search-button') as HTMLButtonElement;
+
 const employeeListSection = document.getElementById('ems_view-employees') as HTMLElement;
 const employeeTableBody = document.getElementById('employee-table-body') as HTMLTableSectionElement;
 
@@ -45,6 +49,12 @@ function loadEmployees() {
 }
 
 function showSection(section: HTMLElement) {
+  if (section === employeeFormSection || section === employeeDetailsSection) {
+    employeeSearchSection.classList.add('hidden');
+  }
+  if (section === employeeListSection) {
+    employeeSearchSection.classList.remove('hidden');
+  }
   employeeListSection.classList.add('hidden');
   employeeFormSection.classList.add('hidden');
   employeeDetailsSection.classList.add('hidden');

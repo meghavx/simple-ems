@@ -28,8 +28,8 @@ body {
     font-weight: 500;
     font-variant: small-caps;
     text-align: center;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
 
     @media (max-width: 768px) {
       font-size: 2.25em;
@@ -38,24 +38,66 @@ body {
 }
 
 
-/* EMS Nav Bar */
-#ems_nav {
+/* EMS Nav & Search Bar */
+#ems_nav-and-search {
   display: flex;
-  justify-content: flex-end;
-  gap: 1%;
+  align-items: center;
+  justify-content: space-between;
 
-  button {
-    width: 10em;
-    padding: 8px 12px;    
-    color: white;
-    border: none;
-    border-radius: 0.375em;
-    cursor: pointer;
-    background-color: darkblue;
+  nav {
+    display: flex;
+    gap: 0.5em;
+
+    button {
+      width: 10em;
+      padding: 8px 12px;    
+      color: white;
+      border: none;
+      border-radius: 0.5em;
+      cursor: pointer;
+      background-color: darkblue;
+    }
+    
+    button:hover {
+      background-color: blue;
+    }
+
+    button#delete-employees {
+      background-color: rgb(0, 0, 100);
+    }
+
+    button#delete-employees:hover {
+      background-color: rgba(164, 34, 34, 0.975);
+    }
   }
-  
-  button:hover {
-    background-color: blue;
+
+  #ems_search {
+    .ems_search-container {
+      display: flex;
+      gap: 0.5em;
+      max-width: 80%;
+
+      input {
+        width: 28em;
+        border-radius: 1em;
+        font-size: 1em;
+        padding: 0.25em 0.75em;
+      }
+    
+      button {
+        width: 8em;
+        padding: 8px 12px;    
+        color: white;
+        border: none;
+        border-radius: 1em;
+        cursor: pointer;
+        background-color: darkblue;
+      }
+      
+      button:hover {
+        background-color: blue;
+      }
+    }
   }
 }
 

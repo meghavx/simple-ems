@@ -14,11 +14,19 @@
         <h1>Employee Management System</h1>
       </div>
       
-      <nav id="ems_nav">
-        <button id="view-employees">View Employees</button>
-        <button id="add-employee">Add Employee</button>
-        <button id="delete-employees">Delete All</button>
-      </nav>
+      <section id="ems_nav-and-search">
+        <nav>
+          <button id="view-employees">View Employees</button>
+          <button id="add-employee">Add Employee</button>
+          <button id="delete-employees">Delete All</button>
+        </nav>
+        <div id="ems_search">
+          <div class="ems_search-container">
+            <input type="text" id="search-input" placeholder="Search by Name, ID, or Position">
+            <button id="search-button">Search</button>
+          </div>
+        </div>
+      </section>
 
       <section id="ems_view-employees">
         <table id="employee-table">

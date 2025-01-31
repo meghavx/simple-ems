@@ -4,6 +4,9 @@ let currentEmployeeId = null;
 const viewListButton = document.getElementById('view-employees');
 const addEmployeeButton = document.getElementById('add-employee');
 const deleteAllButton = document.getElementById('delete-employees');
+const employeeSearchSection = document.getElementById('ems_search');
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 const employeeListSection = document.getElementById('ems_view-employees');
 const employeeTableBody = document.getElementById('employee-table-body');
 const employeeDetailsSection = document.getElementById('ems_employee-details');
@@ -31,6 +34,12 @@ function loadEmployees() {
     employees = storedEmployees ? JSON.parse(storedEmployees) : [];
 }
 function showSection(section) {
+    if (section === employeeFormSection || section === employeeDetailsSection) {
+        employeeSearchSection.classList.add('hidden');
+    }
+    if (section === employeeListSection) {
+        employeeSearchSection.classList.remove('hidden');
+    }
     employeeListSection.classList.add('hidden');
     employeeFormSection.classList.add('hidden');
     employeeDetailsSection.classList.add('hidden');
