@@ -11,5 +11,5 @@ A simple (in-memory) Employee Management System built using `HTML`, `CSS`, and `
 - Start the server:
   - `npm start`
 
-### Live Preview:
-Click [here](https://meghavx.github.io/simple-ems/)
+<!-- ### Live Preview:
+Click [here](https://meghavx.github.io/simple-ems/) -->
