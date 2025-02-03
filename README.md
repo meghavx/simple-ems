@@ -2,10 +2,13 @@
 A simple (in-memory) Employee Management System built using `HTML`, `CSS`, and `TypeScript`.
 
 ### How to run:
-- clone/download project repo and `cd` into it
-- run the following commands:
+- Clone/download project repo and `cd` into it
+- Install [Node.js](https://nodejs.org/) if not already installed
+- Install the required npm packages:
   - `npm install`
+- Compile TypeScript into JavaScript:
   - `npx tsc`
+- Start the server:
   - `npm start`
 
 ### Live Preview:
